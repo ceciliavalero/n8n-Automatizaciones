@@ -17,10 +17,7 @@ Es un espacio para mostrar **criterio de automatización**, integración de **hu
 
 ---
 
-## 🧠 Principio rector
-
-> **No todo debe automatizarse.  
+## 🧠 **No todo debe automatizarse.  
 > Y lo que se automatiza, debe tener contexto, control y responsabilidad.**
 
----
 
