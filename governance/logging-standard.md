@@ -65,4 +65,101 @@ Estos campos se registran cuando el caso de uso lo justifique:
 
 | Campo | Uso recomendado | Riesgo que controla |
 |------|------------------|---------------------|
-| `confidence_sco_
+| `confidence_score` | Cuando hay IA / clasificación | Decisiones automáticas con baja certeza |
+| `error_code` / `error_source` | Cuando se consumen APIs externas | Fallos silenciosos / diagnósticos incompletos |
+| `latency_ms` | Producción / SLAs | Degradación no detectada |
+| `retry_count` | Cuando hay reintentos | Abuso de proveedor / loops |
+| `rate_limit_status` | Sistemas expuestos públicamente | Abuso / scraping |
+| `pii_detected` | Cuando hay entrada libre de usuario | Exposición de datos sensibles |
+| `data_source` | Cuando se consulta información externa | Dependencia invisible del proveedor |
+| `query_fingerprint` | Hash de parámetros (sin exponer PII) | Reconstrucción sin retener datos sensibles |
+
+---
+
+## 5. Retención y minimización (no negociable)
+
+- Registrar **solo lo necesario** para auditoría y control.
+- Preferir **hash/enmascaramiento** sobre almacenar valores completos.
+- Definir una política de retención (ej. 30/90/180 días) por nivel de riesgo.
+- Implementar borrado o expiración automática cuando aplique.
+
+Pregunta obligatoria para cualquier implementación:
+> “¿Qué datos guardamos y por cuánto tiempo?”
+
+Si no hay respuesta documentada, **no hay gobernanza**.
+
+---
+
+## 6. Qué NO debe registrarse (por defecto)
+
+A menos que exista justificación y control explícito, evitar:
+
+- textos completos de conversación del usuario
+- datos sensibles (salud, biometría, financieros, credenciales)
+- tokens, API keys, secretos, headers de autenticación
+- contenido completo de respuestas oficiales si no es necesario (preferir resumen + referencia)
+
+Cuando se requiera evidencia detallada, usar:
+- enmascaramiento,
+- segmentación,
+- acceso restringido,
+- y retención limitada.
+
+---
+
+## 7. Evidencia de mensajes (vinculación con comunicación)
+
+Si el sistema se comunica con usuarios, el log debe capturar:
+
+- `message_type`
+- `disclaimer_shown`
+- `response_type`
+
+Esto habilita auditoría de transparencia:
+> “¿Qué se le dijo exactamente al usuario y bajo qué riesgo?”
+
+---
+
+## 8. Intervención humana (HITL)
+
+Cuando exista Human-in-the-Loop, el log debe registrar:
+
+- `human_intervention = required/performed`
+- `approver_id` (si aplica, anonimizado si se requiere)
+- `approval_timestamp`
+- `approval_outcome` (approved / rejected / modified)
+
+---
+
+## 9. Implementación (nota práctica)
+
+El estándar no depende del destino del log. Puede implementarse con:
+- base de datos,
+- sistema de logs,
+- herramientas de observabilidad,
+- o un datastore simple (solo para prototipos controlados).
+
+Lo importante es:
+- consistencia,
+- trazabilidad,
+- y acceso controlado.
+
+---
+
+## 10. Cumplimiento y auditoría
+
+Un sistema se considera **log-compliant** si:
+
+- todos los campos obligatorios están presentes,
+- existe política de retención,
+- existe control de acceso,
+- se puede reconstruir una ejecución completa con `request_id`,
+- y se registran disclaimers y resultados.
+
+---
+
+## Referencias internas
+
+- `governance/n8n-governance-controls-mapping.md` (controles y objetos de n8n)
+- `governance/automated-messaging-governance.md` (mensajes mínimos por riesgo)
+- `governance/when-human-approval-is-required.md` (cuándo escalar a humano)
