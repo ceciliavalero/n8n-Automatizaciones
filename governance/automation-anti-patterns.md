@@ -22,9 +22,8 @@ Este flujo **omite controles críticos**:
 ## Anti-Patterns (Malas Prácticas)
 Los siguientes patrones **deben evitarse explícitamente** en este caso de uso.
 ---
-### ❌ Anti-Pattern 1: Tratar el flujo como un “demo”
+### ❌ Anti-Pattern 1: Tratar el flujo como un “demo” 
 Riesgo: El sistema se usa en contextos reales sin salvaguardas.
-
 ---
 ### ❌ Anti-Pattern 2: Presentar respuestas como validación oficial
 Riesgo: Uso indebido de la información en decisiones legales o comerciales.
