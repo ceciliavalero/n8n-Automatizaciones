@@ -72,12 +72,6 @@ Prioridades mínimas para un uso responsable:
 4. Mensajes de disclaimer claros al usuario.
 5. Definición de cuándo se requiere aprobación humana.
 
-### Nota final
-**costos si no se aplica gobernanza y control:**.
-- reputacional.
-- operativo.
-- y potencialmente legal.
-
 ---
 
 # Governance Considerations & Anti-Patterns
