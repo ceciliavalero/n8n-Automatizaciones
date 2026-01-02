@@ -13,10 +13,10 @@ Este flujo **omite controles críticos**:
 - ❌ No define una política explícita de cumplimiento, retención o auditoría real.
 - ❌ Usa Google Sheets como log, lo cual **no es un mecanismo de auditoría formal**.
 
-**Sin governanza el costo puede ser:
-#reputacional
-#operativo.
-#potencialmente legal.
+**En este caso Sin governanza el costo puede ser:**
+**#reputacional**
+**#operativo.**
+**#potencialmente legal.**
 
 
 ## Anti-Patterns (Malas Prácticas)
