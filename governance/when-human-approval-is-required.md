@@ -13,8 +13,7 @@ La intervención humana se elimina solo cuando el riesgo es bajo, el contexto es
 > **Si una automatización puede causar daño irreversible, impacto legal, pérdida de confianza o afectación a personas, debe incluir aprobación humana.**
 
 
----
-## ❌ Mal ejemplo: Uso incorrecto de almacenamiento persistente para datos personales
+--
 
 
 <img width="1100" height="605" alt="image" src="https://github.com/user-attachments/assets/18499925-5fb7-44f1-bf7f-c8170936363a" />
@@ -44,9 +43,13 @@ Este enfoque introduce varios riesgos innecesarios:
 Si el sistema no puede responder esta pregunta de forma inmediata y documentada,  
 **la automatización no debería ejecutarse sin revisión humana**.
 
-
-
 __
+
+<img width="782" height="345" alt="image" src="https://github.com/user-attachments/assets/d56ab1b1-a971-481e-8185-82b8b92e944b" />
+
+
+
+
 ## 1. Decisiones que afectan a personas
 
 Se **requiere aprobación humana** cuando la automatización:
