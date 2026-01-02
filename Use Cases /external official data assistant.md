@@ -158,6 +158,8 @@ El sistema debe poder responder, como mínimo:
 - bajo qué contexto.
 
 La trazabilidad **no es opcional** cuando se trabaja con datos oficiales.
+<img width="1276" height="747" alt="image" src="https://github.com/user-attachments/assets/6fc16e07-8803-457c-b67b-ff0a26ba18c3" />
+
 
 ---
 
@@ -277,9 +279,7 @@ En cualquier otro escenario, **debe activarse intervención humana o bloqueo**.
 
 ---
 
-## Nota final
-
-El riesgo principal de este caso de uso **no es técnico**.
+## El riesgo principal de este caso de uso **no es técnico**.
 
 Es:
 - reputacional,
