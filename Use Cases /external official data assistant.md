@@ -34,9 +34,7 @@ Este flujo **omite controles críticos**, entre ellos:
 - ❌ Usa Google Sheets como log, lo cual **no es un mecanismo de auditoría formal**.
 
 ### Por qué esto es un problema
-
 Aunque el flujo parezca simple, **ya se comporta como un sistema de consulta oficial**, no como un demo.
-
 Esto introduce riesgos relevantes:
 
 - **Uso indebido de datos oficiales**  
@@ -80,8 +78,214 @@ Prioridades mínimas para un uso responsable:
 - operativo.
 - y potencialmente legal.
 
+---
 
+# Governance Considerations & Anti-Patterns
+## External Official Data Assistant (CNPJ / Datos Oficiales)
 
+Este documento describe las **consideraciones de gobernanza** y los **anti-patterns** asociados a un asistente conversacional que consulta datos oficiales externos, los interpreta mediante IA y devuelve respuestas a usuarios finales.
+
+El objetivo no es detallar la implementación técnica, sino **establecer límites claros, riesgos asumidos y controles necesarios**.
+---
+
+## 1. Consideraciones de Gobernanza
+
+### 1.1 Naturaleza real del sistema
+
+Aunque el flujo pueda parecer simple, este asistente **ya se comporta como un sistema de consulta oficial**, no como un demo o chatbot informativo genérico.
+
+Esto implica:
+- expectativa de exactitud,
+- posible uso en decisiones operativas,
+- riesgo reputacional y legal si la información es incorrecta o mal interpretada.
+
+Por lo tanto, **requiere gobernanza explícita**.
+
+---
+
+### 1.2 Uso de datos oficiales externos
+
+El sistema depende de una API externa que provee información oficial.
+
+Riesgos asociados:
+- dependencia de disponibilidad del proveedor,
+- cambios no controlados en el esquema de datos,
+- errores o inconsistencias en la fuente.
+
+Controles esperados:
+- manejo explícito de errores,
+- mensajes claros cuando la fuente no es confiable,
+- prohibición de uso como “validación legal”.
+
+---
+
+### 1.3 Uso de IA para interpretación de datos
+
+La IA:
+- interpreta,
+- resume,
+- y contextualiza información oficial.
+
+Esto introduce riesgos de:
+- alucinación,
+- simplificación excesiva,
+- pérdida de matices legales o administrativos.
+
+La IA **no debe presentar conclusiones como certezas**, sino como apoyo informativo.
+
+---
+
+### 1.4 Human-in-the-Loop (HITL)
+
+Este caso de uso **no debe operar sin supervisión humana** en los siguientes escenarios:
+
+- ambigüedad en la intención del usuario,
+- uso potencialmente operativo o legal,
+- errores o respuestas incompletas de la API,
+- solicitudes fuera del patrón esperado.
+
+Debe existir:
+- escalamiento,
+- validación,
+- o bloqueo explícito cuando aplique.
+
+---
+
+### 1.5 Trazabilidad y evidencia
+
+El sistema debe poder responder, como mínimo:
+
+- quién realizó la consulta,
+- cuándo y desde qué canal,
+- qué datos se consultaron,
+- qué respuesta se entregó,
+- bajo qué contexto.
+
+La trazabilidad **no es opcional** cuando se trabaja con datos oficiales.
+
+---
+
+### 1.6 Comunicación y transparencia al usuario
+
+El usuario debe saber claramente que:
+
+- interactúa con un sistema automatizado,
+- la información es informativa, no certificatoria,
+- pueden existir errores o limitaciones,
+- en ciertos casos intervendrá una persona.
+
+La opacidad genera falsas expectativas y riesgo reputacional.
+
+---
+
+## 2. Anti-Patterns (Malas Prácticas)
+
+Los siguientes patrones **deben evitarse explícitamente** en este caso de uso.
+
+---
+
+### ❌ Anti-Pattern 1: Tratar el flujo como un “demo”
+
+Asumir que, por ser técnicamente simple, no requiere control.
+
+**Riesgo:**  
+El sistema se usa en contextos reales sin salvaguardas.
+
+---
+
+### ❌ Anti-Pattern 2: Presentar respuestas como validación oficial
+
+Responder con lenguaje que sugiera:
+- certificación,
+- verificación legal,
+- o garantía de exactitud.
+
+**Riesgo:**  
+Uso indebido de la información en decisiones legales o comerciales.
+
+---
+
+### ❌ Anti-Pattern 3: No distinguir intención del usuario
+
+No diferenciar entre:
+- consulta informativa,
+- uso operativo,
+- uso legal o comercial.
+
+**Riesgo:**  
+El mismo flujo responde escenarios con impactos radicalmente distintos.
+
+---
+
+### ❌ Anti-Pattern 4: Logging superficial
+
+Usar registros básicos (ej. Google Sheets) como si fueran auditoría formal.
+
+**Riesgo:**  
+No poder reconstruir decisiones ante incidentes o cuestionamientos.
+
+---
+
+### ❌ Anti-Pattern 5: Dependencia silenciosa de APIs externas
+
+No manejar explícitamente:
+- caídas del servicio,
+- respuestas incompletas,
+- errores de formato.
+
+**Riesgo:**  
+El sistema responde información incorrecta sin advertencia.
+
+---
+
+### ❌ Anti-Pattern 6: Uso de IA sin disclaimers
+
+Permitir que la IA:
+- interprete datos oficiales,
+- sin advertir limitaciones o posibilidad de error.
+
+**Riesgo:**  
+Falsa sensación de certeza y confianza excesiva en el sistema.
+
+---
+
+### ❌ Anti-Pattern 7: Automatización sin punto de fricción
+
+Permitir ejecución automática continua sin:
+- pausas,
+- validación humana,
+- ni control de excepciones.
+
+**Riesgo:**  
+Escalamiento automático de errores y malas decisiones.
+
+---
+
+## 3. Criterio de Aceptación de Gobernanza
+
+Este caso de uso **solo debe operar sin supervisión constante** si:
+
+- la intención del usuario es claramente informativa,
+- los datos son no sensibles,
+- la fuente responde correctamente,
+- y la respuesta se presenta con disclaimers adecuados.
+
+En cualquier otro escenario, **debe activarse intervención humana o bloqueo**.
+
+---
+
+## Nota final
+
+El riesgo principal de este caso de uso **no es técnico**.
+
+Es:
+- reputacional,
+- operativo,
+- y de uso indebido.
+
+La gobernanza no limita el valor del asistente.  
+**Lo hace sostenible.**
+---
 
 # Checklist – External Official Data Assistant
 
