@@ -158,6 +158,32 @@ Un sistema se considera **log-compliant** si:
 
 ---
 
+
+Dónde lo pones (esto es lo importante)
+
+Hay 3 lugares posibles y solo 1 es el correcto según tu objetivo:
+
+✅ 1) Logging después de generar respuesta (éxito)
+
+Colócalo justo antes del “Send message”.
+
+Registra: input + output + status SUCCESS.
+
+✅ 2) Logging en errores (imprescindible)
+
+En n8n, usa un Error Trigger workflow separado o ramas con IF / Try-Catch (depende tu versión/nodos).
+
+Registra: input + error + status ERROR.
+
+✅ 3) Logging al inicio (solo si quieres auditoría de entrada)
+
+Útil si quieres evidencia aunque se caiga la IA.
+
+Registra: input + status RECEIVED.
+
+Lo ideal: 1 + 2.
+Si haces solo 1, vas a tener logs “bonitos” pero te vas a quedar ciega cuando falle.
+
 ## Referencias internas
 
 - `governance/n8n-governance-controls-mapping.md` (controles y objetos de n8n)
