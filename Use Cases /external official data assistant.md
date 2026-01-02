@@ -142,6 +142,8 @@ Debe existir:
 - escalamiento,
 - validación,
 - o bloqueo explícito cuando aplique.
+- <img width="1792" height="978" alt="image" src="https://github.com/user-attachments/assets/ecf293c4-5dd9-47f2-89fb-e98e4b9e8656" />
+
 
 ---
 
@@ -161,6 +163,8 @@ La trazabilidad **no es opcional** cuando se trabaja con datos oficiales.
 
 ### 1.6 Comunicación y transparencia al usuario
 
+<<en donde el texto explícito que aclara límites>>
+
 El usuario debe saber claramente que:
 
 - interactúa con un sistema automatizado,
@@ -169,6 +173,11 @@ El usuario debe saber claramente que:
 - en ciertos casos intervendrá una persona.
 
 La opacidad genera falsas expectativas y riesgo reputacional.
+
+Tan simple como integrar un texto informativo "Esto es un sistema automatizado. No es una validación oficial."
+con esto:  no se induce a interpretaciones legales u operativas
+
+La transparencia **no se asume**, se diseña
 
 ---
 
